@@ -1,0 +1,17 @@
+try {
+      $stmt = $this->connect()->prepare('INSERT INTO accounts(fname ,mname ,lname ,username ,password ,type) VALUES (:fname, :mname, :lname, :username, :password, :type)');
+
+      $stmt->bindParam(':fname', $fname);
+      $stmt->bindParam(':mname', $mname);
+      $stmt->bindParam(':lname', $lname);
+      $stmt->bindParam(':username', $username);
+      $stmt->bindParam(':password', $password);
+      $stmt->bindParam(':type', $type);
+
+      if (!$stmt->execute()) {
+        return "Error";
+      }
+      return "Success";
+    } catch (Exception $exception) {
+      return $exception;
+    }
